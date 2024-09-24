@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techsy Game Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo-nav">
+            <img src="static/logo.png" class="logo" alt="Techsy Logo">
+        </div>
+        <ul id="navmenu">
+            <li><a href="#" class="nav-link">Home</a></li>
+            <li><a href="#recommendations" class="nav-link">Recommends</a></li>
+            <li><a href="#contact" class="nav-link">Browsing History</a></li>
+            <i class="fas fa-times" id="close-menu" aria-label="Close Menu"></i>
+        </ul>
+        <i class="fas fa-bars" id="open-menu"></i>
+    </nav>
+
+    <div class="container form-container">
+        <h1>Arcade Techsy</h1>
+        <h2>Game Recommendation System</h2>
+        <form id="recommendationForm">
+            <div class="form-group">
+                <label for="preferred_game">Enter your preferred game</label>
+                <input type="text" id="preferred_game" name="preferred_game" placeholder="Preferred game" required>
+            </div>
+
+            <div class="form-group">
+                <label for="platform">Choose a platform</label>
+                <select id="platform" name="platform" required></select>
+            </div>
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>
+
+    <div id="recommendations" class="hidden">
+        <div class="container recommendations-container">
+            <h2>Recommended Games</h2>
+            <div id="gamesContainer" class="games-container"></div>
+        </div>
+    </div>
+
+    <div id="loading" class="hidden">
+        <div class="spinner"></div>
+        <p>Fetching recommendations...</p>
+    </div>
+
+
+    <!-- Footer -->
+    <div id="footer">
+        <div class="copyright">
+            <p>© 2024 Arcade Techsy <i class="fas fa-heart"></i> All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Hide loading indicator on initial page load
+            $('#loading').hide();
+
+            const platforms = ['Wii', 'DS', 'X360', 'PS3', 'PS2', '3DS', 'PS4', 'PS', 'XB', 'PC', 'PSP', 'WiiU', 'GC', 'GBA', 'XOne', 'PSV', 'DC'];
+            const platformSelect = $('#platform');
+            
+            platforms.forEach(platform => {
+                platformSelect.append($('<option>', {
+                    value: platform,
+                    text: platform
+                }));
+            });
+
+            $('#recommendationForm').on('submit', function(event) {
+                event.preventDefault();
+
+                const preferred_game = $('#preferred_game').val().trim();
+                const platform = $('#platform').val();
+
+                if (preferred_game === '' || platform === '') {
+                    showError('Please enter both a preferred game and choose a platform.');
+                    return;
+                }
+
+                $('#loading').removeClass('hidden');
+                $('#recommendations').addClass('hidden');
+
+                $.ajax({
+                    url: '/recommend',
+                    method: 'POST',
+                    data: {
+                        preferred_game: preferred_game,
+                        platform: platform
+                    },
+                    success: function(response) {
+                        $('#loading').addClass('hidden');
+                        $('#gamesContainer').empty();
+
+                        if (response.recommendations && response.recommendations.length > 0) {
+                            response.recommendations.forEach(function(game) {
+                                console.log(game.image_url); // Check the actual image URL
+
+                                $('#gamesContainer').append(`
+                                    <div class="game">
+                                        <p>${game.name}</p>
+                                        <img src="${game.image_url || '/static/default_image.png'}" class = '' alt="${game.name}" style="width: 200px; height: auto;">
+                                    </div>
+                                `);
+                            });
+                        } else {
+                            $('#gamesContainer').append('<p>No similar games found.</p>');
+                        }
+
+                        $('#recommendations').removeClass('hidden').hide().fadeIn();
+                        $('html, body').animate({
+                            scrollTop: $('#recommendations').offset().top
+                        }, 1000);
+                    },
+                    error: function() {
+                        $('#loading').addClass('hidden');
+                        showError('Error fetching recommendations. Please try again.');
+                    }
+                });
+            });
+
+            function showError(message) {
+                alert(message);
+            }
+
+            $('#open-menu').click(function() {
+                $('#sidemenu').addClass('active');
+            });
+
+            $('#close-menu').click(function() {
+                $('#sidemenu').removeClass('active');
+            });
+
+            $('.nav-link').click(function() {
+                $('#sidemenu').removeClass('active');
+            });
+        });
+    </script>
+</body>
+</html>
