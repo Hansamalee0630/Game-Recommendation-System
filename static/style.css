@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #242323;
+    background-color: #272626;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*Add font style to H1 header*/
+.julius-sans-one-regular {
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.montserrat-font {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100; /* Reduced font weight */
+    font-style: normal;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 100; /* Reduced font weight */
+    margin-bottom: 20px;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 70px;
+    padding: 20px;
+    background-color: rgba(8, 8, 8, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+nav .logo {
+    width: 150px;
+    margin-left: 50px;
+    flex-shrink: 0; /* Prevent the logo from shrinking */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin-right: 180px;
+    flex-grow: 1; /* Allow the ul to grow and take available space */
+    justify-content: flex-end; /* Align the ul to the right */
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #9B69FF;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #9B69FF;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.logo-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navmenu {
+    /* Ensure navmenu styles are not affected by logo changes */
+    position: relative;
+    z-index: 1;
+}
+
+.fas.fa-bars, .fas.fa-times {
+    display: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Form Container */
+.form-container {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.form-container h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.form-container h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #bc87ee;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #4f2d94;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8A4FFF;
+}
+
+/* Recommendations Section */
+#recommendations {
+    background-color: #fff;
+    padding: 60px 0;
+}
+
+/* Ensure the container for the recommendations is styled */
+.recommendations-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between the recommendation boxes */
+    padding: 20px;
+}
+
+/* Style for each recommendation box */
+.recommendation-box {
+    background-color: #262626;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 200px; /* Set a fixed width for the boxes */
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+}
+
+/* Style for the images within the recommendation boxes */
+.recommendation-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Style for the game name */
+.recommendation-box p {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.recommendations-container h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #272626;
+}
+
+.games-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.game {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.game:hover {
+    transform: translateY(-5px);
+}
+
+.game p {
+    font-size: 1.2rem;
+    color: #272626;
+}
+
+/* Loading Indicator */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2000;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #9B69FF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading p {
+    color: #fff;
+    margin-top: 10px;
+}
+
+/* Footer */
+.copyright {
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    background: #262626;
+    color: #c8bbcb;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.copyright i {
+    color: #9B69FF;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    nav ul {
+        background: #333;
+        position: fixed;
+        top: 0;
+        right: -200px;
+        width: 200px;
+        height: 100vh;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.5s;
+        flex-direction: column;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 25px;
+    }
+
+    nav ul .fas {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+
+    .fas.fa-bars {
+        display: block;
+        z-index: 999;
+    }
+
+    nav ul.active {
+        right: 0;
+    }
+
+    .form-container h1 {
+        font-size: 2rem;
+    }
+
+    .form-container h2 {
+        font-size: 1.2rem;
+    }
+}
