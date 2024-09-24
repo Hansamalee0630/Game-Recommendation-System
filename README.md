@@ -1,22 +1,4 @@
 # Game-Recommendation-System
-<br>
-Game Recommendation System made with Flask, Python, Pandas, Numpy, Scikit-learn, jQuery, HTML and CSS.
-<br><br>
-
-Game-Recommendation-System/<br>
-├── data/<br>
-│   └── Video_Games_Sales_as_at_22_Dec_2016.csv<br>
-├── model/<br>
-│   ├── recommendation_engine.py<br>
-│   └── Video_Games.ipynb<br>
-├── static/<br>
-│   └── styles.css<br>
-├── templates/<br>
-│   └── index.html<br>
-├── app.py<br>
-├── README.md<br>
-├── requirements.txt<br>
-└── .gitignore<br>
 
 # 🎮 Game Recommendation System
 
@@ -38,7 +20,23 @@ A Flask-based **Game Recommendation System** powered by **Machine Learning** alg
 - `static/`: Contains static files like CSS (`styles.css`).
 - `templates/`: HTML templates for the Flask app (`index.html`).
 - `app.py`: Main Flask application file to run the web app.
+<br>
 
+Game-Recommendation-System/<br>
+├── data/<br>
+│   └── Video_Games_Sales_as_at_22_Dec_2016.csv<br>
+├── model/<br>
+│   ├── recommendation_engine.py<br>
+│   └── Video_Games.ipynb<br>
+├── static/<br>
+│   └── styles.css<br>
+├── templates/<br>
+│   └── index.html<br>
+├── app.py<br>
+├── README.md<br>
+├── requirements.txt<br>
+└── .gitignore<br>
+<br>
 ## 📊 Dataset:
 The dataset used in this project is **Video Games Sales as of Dec 2016**, which includes information about video game sales, genre, publisher, and more.
 
